@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Net;
 using ServiceUnitTest;
+using NUnit.Framework;
 
+[TestFixture]
 public class TestCases
 {
+	[Test]
 	public static void SuccessfulPageLoad ()
 	{
-		var x = new HttpTester ("http://ga.icn.se/");
+		Assert.AreEqual (HttpTester.FetchStatusCode ("http://www.dn.se/"), HttpStatusCode.OK);
 
 		// TODO ASSERT: returns 200 status & at least 300 bytes of data
 	}

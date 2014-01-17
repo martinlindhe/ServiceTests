@@ -6,7 +6,7 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>ServiceUnitTestTests</RootNamespace>
     <AssemblyName>ServiceUnitTestTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -40,5 +40,11 @@
       <Project>{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}</Project>
       <Name>ServiceUnitTest</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+    <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+    <Reference Include="System" />
+    <Reference Include="System.Net" />
   </ItemGroup>
 </Project>
