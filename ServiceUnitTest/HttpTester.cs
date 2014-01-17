@@ -27,12 +27,24 @@ namespace ServiceUnitTest
 					"Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) " +
 				"(compatible; MSIE 6.0; Windows NT 5.1; " +
 				".NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+
+				// print out client headers to be sent to server:
+				foreach (var x in client.Headers) {
+					Console.WriteLine ("client header " + x);
+				}
 					
 				byte[] arr = client.DownloadData (url);
 
-				// Write values.
-				Console.WriteLine ("--- WebClient result ---");
-				Console.WriteLine (arr.Length);
+				Console.WriteLine ("got " + arr.Length + " bytes result");
+
+				// print all server headers:
+				foreach (var x in client.ResponseHeaders) {
+					Console.WriteLine ("response header " + x);
+				}
+
+				// Get response header
+				string contentType = client.ResponseHeaders ["Content-Type"];
+				Console.WriteLine ("contentType = " + contentType);
 			}
 		}
 	}

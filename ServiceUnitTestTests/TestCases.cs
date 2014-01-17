@@ -47,7 +47,13 @@ public class TestCases
 
 	public static void GzippedResult ()
 	{
+		// TODO client header must specify client.Headers["Accept-Encoding"] = "gzip";
 		// TODO verify url return gzipped content
+	}
+
+	public static void CheckContentType ()
+	{
+		// TODO verify url returns expected content type (eg text/html)
 	}
 
 	public static void HasCertificate ()

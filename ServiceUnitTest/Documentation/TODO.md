@@ -19,6 +19,7 @@ Something similar, for Ruby (?): https://github.com/hannestyden/hyperspec
 
 == TODO ==
     * what .NET http libs to use?
+    * add a "webpage load time test". load page 10 times, show average load speed
     * can we extend NUnit ?
     * make unit tests pass
     * write a mini website to use as reference, using .NET web classes?
