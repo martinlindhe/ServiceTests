@@ -14,7 +14,7 @@ public class TestCases
 	{
 		// NOTE tests a permanent redirect (HTTP XXXXX number)
 
-		// TODO "should redirect permanently"  http://site.com/blog  -> http://blog.site.com/
+		// TODO "should redirect permanently"  http://site.com/  -> http://www.site.com/
 
 		// TODO also check for "temporary redirect". TODO 3: check for ANY redirect code (perm or temp)
 	}
@@ -33,6 +33,21 @@ public class TestCases
 	public static void JsonResult ()
 	{
 		// TODO verify url return valid JSON  http://site.com/json-request
+	}
+
+	public static void XmlResult ()
+	{
+		// TODO verify url return valid XML
+	}
+
+	public static void SoapResult ()
+	{
+		// TODO verify url return valid SOAP XML
+	}
+
+	public static void GzippedResult ()
+	{
+		// TODO verify url return gzipped content
 	}
 
 	public static void HasCertificate ()

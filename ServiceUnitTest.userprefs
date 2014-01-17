@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceUnitTestTests/TestCases.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceUnitTest/HttpTester.cs">
     <Files>
-      <File FileName="ServiceUnitTest/Documentation/TODO.md" Line="14" Column="27" />
-      <File FileName="ServiceUnitTest/HttpTester.cs" Line="10" Column="4" />
-      <File FileName="ServiceUnitTestTests/TestCases.cs" Line="41" Column="3" />
+      <File FileName="ServiceUnitTest/Documentation/TODO.md" Line="24" Column="72" />
+      <File FileName="ServiceUnitTest/HttpTester.cs" Line="25" Column="62" />
+      <File FileName="ServiceUnitTestTests/TestCases.cs" Line="50" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

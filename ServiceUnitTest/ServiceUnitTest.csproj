@@ -6,7 +6,7 @@
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>ServiceUnitTest</RootNamespace>
     <AssemblyName>ServiceUnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -40,5 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpTester.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net" />
+    <Reference Include="System" />
   </ItemGroup>
 </Project>
