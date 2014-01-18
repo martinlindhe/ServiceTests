@@ -7,11 +7,24 @@ using NUnit.Framework;
 public class TestCases
 {
 	[Test]
-	public static void SuccessfulPageLoad ()
+	public static void StatusOK ()
 	{
-		Assert.AreEqual (HttpTester.FetchStatusCode ("http://www.dn.se/"), HttpStatusCode.OK);
+		// verify that page status is OK (200)
+		Assert.AreEqual (HttpTester.FetchStatusCode ("http://cellfab.test/"), HttpStatusCode.OK);
+	}
 
-		// TODO ASSERT: returns 200 status & at least 300 bytes of data
+	[Test]
+	public static void StatusNotFound ()
+	{
+		// verify that page status is NOT FOUND (404)
+		Assert.AreEqual (HttpTester.FetchStatusCode ("http://cellfab.test/no-such-file"), HttpStatusCode.NotFound);
+	}
+
+	[Test]
+	public static void ContentLoads ()
+	{
+		// verify that page content is at least 1000 bytes
+		Assert.GreaterOrEqual (HttpTester.FetchContent ("http://cellfab.test/").Length, 1000);
 	}
 
 	public static void RedirectPermanent ()
@@ -21,12 +34,6 @@ public class TestCases
 		// TODO "should redirect permanently"  http://site.com/  -> http://www.site.com/
 
 		// TODO also check for "temporary redirect". TODO 3: check for ANY redirect code (perm or temp)
-	}
-
-	public static void NotFound ()
-	{
-		// TODO check that request is a 404 and no other error code or failure!
-		// "should be 404" http://site.com/not-found
 	}
 
 	public static void Restricted ()
