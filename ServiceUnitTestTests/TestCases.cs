@@ -3,6 +3,8 @@ using System.Net;
 using ServiceUnitTest;
 using NUnit.Framework;
 
+// TODO: specify a list of user agents to use to perform each test
+// TODO: perform each test once for each user agent
 [TestFixture]
 public class TestCases
 {
@@ -10,21 +12,30 @@ public class TestCases
 	public static void StatusOK ()
 	{
 		// verify that page status is OK (200)
-		Assert.AreEqual (HttpTester.FetchStatusCode ("http://cellfab.test/"), HttpStatusCode.OK);
+		Assert.AreEqual (
+			HttpTester.FetchStatusCode ("http://cellfab.test/"), 
+			HttpStatusCode.OK
+		);
 	}
 
 	[Test]
 	public static void StatusNotFound ()
 	{
 		// verify that page status is NOT FOUND (404)
-		Assert.AreEqual (HttpTester.FetchStatusCode ("http://cellfab.test/no-such-file"), HttpStatusCode.NotFound);
+		Assert.AreEqual (
+			HttpTester.FetchStatusCode ("http://cellfab.test/no-such-file"), 
+			HttpStatusCode.NotFound
+		);
 	}
 
 	[Test]
 	public static void ContentLoads ()
 	{
 		// verify that page content is at least 1000 bytes
-		Assert.GreaterOrEqual (HttpTester.FetchContent ("http://cellfab.test/").Length, 1000);
+		Assert.GreaterOrEqual (
+			HttpTester.FetchContent ("http://cellfab.test/").Length, 
+			1000
+		);
 	}
 
 	public static void RedirectPermanent ()
@@ -34,6 +45,11 @@ public class TestCases
 		// TODO "should redirect permanently"  http://site.com/  -> http://www.site.com/
 
 		// TODO also check for "temporary redirect". TODO 3: check for ANY redirect code (perm or temp)
+	}
+
+	public static void ContentType ()
+	{
+		// TODO verify url returns expected content type (eg text/html)
 	}
 
 	public static void Restricted ()
@@ -60,11 +76,6 @@ public class TestCases
 	{
 		// TODO client header must specify client.Headers["Accept-Encoding"] = "gzip";
 		// TODO verify url return gzipped content
-	}
-
-	public static void CheckContentType ()
-	{
-		// TODO verify url returns expected content type (eg text/html)
 	}
 
 	public static void HasCertificate ()

@@ -12,7 +12,7 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = (int)HttpTester.FetchStatusCode ("http://cellfab.test/no-such-file");
+			var xx = HttpTester.FetchContent ("http://cellfab.test/");
 			Console.WriteLine (xx);
 		}
 
@@ -64,24 +64,29 @@ namespace ServiceUnitTest
 			}
 		}
 
-		public static string FetchContent (string url)
+		public static byte[] FetchContent (string url)
 		{
 			var response = PerformFetch (url);
 
 			// Console.WriteLine ("Content type is {0}", response.ContentType);
 
 
-			// Get the stream associated with the response.
-			Stream receiveStream = response.GetResponseStream ();
+			byte[] res = new byte[0];
 
-			// Pipes the stream to a higher level stream reader with the required encoding format. 
-			StreamReader readStream = new StreamReader (receiveStream, System.Text.Encoding.UTF8);
+			using (BinaryReader reader = new BinaryReader (response.GetResponseStream ())) {
+				byte[] scratch = null;
 
-			Console.WriteLine ("Response stream received.");
-			string res = readStream.ReadToEnd ();
-			//Console.WriteLine (res.Length);
-			response.Close ();
-			readStream.Close ();
+				while ((scratch = reader.ReadBytes (4096)).Length > 0) {
+					if (res.Length == 0)
+						res = scratch;
+					else {
+						byte[] temp = new byte[res.Length + scratch.Length];
+						Array.Copy (res, temp, res.Length);
+						Array.Copy (scratch, 0, temp, res.Length, scratch.Length);
+						res = temp;
+					}
+				}
+			}
 
 			return res;
 		}
