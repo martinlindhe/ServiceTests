@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.IO;
+using Punku;
 
 // TODO: need a "is_url" method (core_dev). extend string class for this
 // TODO make user agent changeable
@@ -12,8 +13,13 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchContentType ("http://cellfab.test/");
-			Console.WriteLine (xx);
+			var xx = HttpTester.FetchContent ("http://cellfab.test/");
+
+
+			// dumps byte array to disk for verification
+			xx.ToFile ("out1.raw");
+
+			//Console.WriteLine (xx);
 		}
 
 		private static HttpWebResponse PerformFetch (string url)
@@ -78,7 +84,7 @@ namespace ServiceUnitTest
 
 			byte[] res = new byte[0];
 
-			using (BinaryReader reader = new BinaryReader (response.GetResponseStream ())) {
+			using (var reader = new System.IO.BinaryReader (response.GetResponseStream ())) {
 				byte[] scratch = null;
 
 				while ((scratch = reader.ReadBytes (4096)).Length > 0) {

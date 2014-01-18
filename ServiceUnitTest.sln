@@ -5,16 +5,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTest", "ServiceU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceUnitTestTests", "ServiceUnitTestTests\ServiceUnitTestTests.csproj", "{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Punku", "..\punku\punku\Punku.csproj", "{09D942E9-3228-4FB0-A1C0-64969E2322BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PunkuTests", "..\punku\PunkuTests\PunkuTests.csproj", "{55E06305-C6B6-492D-A394-A11238A495CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09D942E9-3228-4FB0-A1C0-64969E2322BF}.Debug|x86.ActiveCfg = Debug|x86
+		{09D942E9-3228-4FB0-A1C0-64969E2322BF}.Debug|x86.Build.0 = Debug|x86
+		{09D942E9-3228-4FB0-A1C0-64969E2322BF}.Release|x86.ActiveCfg = Release|x86
+		{09D942E9-3228-4FB0-A1C0-64969E2322BF}.Release|x86.Build.0 = Release|x86
 		{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}.Debug|x86.ActiveCfg = Debug|x86
 		{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}.Debug|x86.Build.0 = Debug|x86
 		{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}.Release|x86.ActiveCfg = Release|x86
 		{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}.Release|x86.Build.0 = Release|x86
+		{55E06305-C6B6-492D-A394-A11238A495CF}.Debug|x86.ActiveCfg = Debug|x86
+		{55E06305-C6B6-492D-A394-A11238A495CF}.Debug|x86.Build.0 = Debug|x86
+		{55E06305-C6B6-492D-A394-A11238A495CF}.Release|x86.ActiveCfg = Release|x86
+		{55E06305-C6B6-492D-A394-A11238A495CF}.Release|x86.Build.0 = Release|x86
 		{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}.Debug|x86.ActiveCfg = Debug|x86
 		{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}.Debug|x86.Build.0 = Debug|x86
 		{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}.Release|x86.ActiveCfg = Release|x86

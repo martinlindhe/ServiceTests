@@ -48,6 +48,12 @@ public class TestCases
 		);
 	}
 
+	public static void GzippedResult ()
+	{
+		// TODO client header must specify client.Headers["Accept-Encoding"] = "gzip";
+		// TODO verify url return gzipped content
+	}
+
 	public static void RedirectPermanent ()
 	{
 		// NOTE tests a permanent redirect (HTTP XXXXX number)
@@ -75,12 +81,6 @@ public class TestCases
 	public static void SoapResult ()
 	{
 		// TODO verify url return valid SOAP XML
-	}
-
-	public static void GzippedResult ()
-	{
-		// TODO client header must specify client.Headers["Accept-Encoding"] = "gzip";
-		// TODO verify url return gzipped content
 	}
 
 	public static void HasCertificate ()

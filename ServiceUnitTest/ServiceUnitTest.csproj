@@ -45,4 +45,10 @@
     <Reference Include="System.Net" />
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\punku\punku\Punku.csproj">
+      <Project>{09D942E9-3228-4FB0-A1C0-64969E2322BF}</Project>
+      <Name>Punku</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
