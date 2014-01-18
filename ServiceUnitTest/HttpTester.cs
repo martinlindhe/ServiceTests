@@ -12,7 +12,7 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchContent ("http://cellfab.test/");
+			var xx = HttpTester.FetchContentType ("http://cellfab.test/");
 			Console.WriteLine (xx);
 		}
 
@@ -56,6 +56,7 @@ namespace ServiceUnitTest
 
 				return res;
 			} catch (WebException ex) {
+				// HACK: for some reason, .NET throws an exception on 404 and 500 (maybe more)
 			
 				HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
 				var res = webResponse.StatusCode;
@@ -64,12 +65,16 @@ namespace ServiceUnitTest
 			}
 		}
 
-		public static byte[] FetchContent (string url)
+		public static string FetchContentType (string url)
 		{
 			var response = PerformFetch (url);
 
-			// Console.WriteLine ("Content type is {0}", response.ContentType);
+			return response.ContentType;
+		}
 
+		public static byte[] FetchContent (string url)
+		{
+			var response = PerformFetch (url);
 
 			byte[] res = new byte[0];
 

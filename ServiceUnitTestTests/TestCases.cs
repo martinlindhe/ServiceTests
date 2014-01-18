@@ -38,6 +38,16 @@ public class TestCases
 		);
 	}
 
+	[Test]
+	public static void ContentType ()
+	{
+		// verify that content type is set correctly
+		Assert.AreEqual (
+			HttpTester.FetchContentType ("http://cellfab.test/"),
+			"text/html; charset=UTF-8"
+		);
+	}
+
 	public static void RedirectPermanent ()
 	{
 		// NOTE tests a permanent redirect (HTTP XXXXX number)
@@ -45,11 +55,6 @@ public class TestCases
 		// TODO "should redirect permanently"  http://site.com/  -> http://www.site.com/
 
 		// TODO also check for "temporary redirect". TODO 3: check for ANY redirect code (perm or temp)
-	}
-
-	public static void ContentType ()
-	{
-		// TODO verify url returns expected content type (eg text/html)
 	}
 
 	public static void Restricted ()
