@@ -13,7 +13,7 @@ public class TestCases
 	{
 		// verify that page status is OK (200)
 		Assert.AreEqual (
-			HttpTester.FetchStatusCode ("http://cellfab.test/"), 
+			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/normal.php"), 
 			HttpStatusCode.OK
 		);
 	}
@@ -23,7 +23,7 @@ public class TestCases
 	{
 		// verify that page status is NOT FOUND (404)
 		Assert.AreEqual (
-			HttpTester.FetchStatusCode ("http://cellfab.test/no-such-file"), 
+			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/no-such-file"), 
 			HttpStatusCode.NotFound
 		);
 	}
@@ -33,8 +33,8 @@ public class TestCases
 	{
 		// verify that page content is at least 1000 bytes
 		Assert.GreaterOrEqual (
-			HttpTester.FetchContent ("http://cellfab.test/").Length, 
-			1000
+			HttpTester.FetchContent ("http://battle.x/http_tester_webserver/normal.php").Length, 
+			20
 		);
 	}
 
@@ -43,7 +43,7 @@ public class TestCases
 	{
 		// verify that content type is set correctly
 		Assert.AreEqual (
-			HttpTester.FetchContentType ("http://cellfab.test/"),
+			HttpTester.FetchContentType ("http://battle.x/http_tester_webserver/normal.php"),
 			"text/html; charset=UTF-8"
 		);
 	}
@@ -72,7 +72,7 @@ public class TestCases
 		// TODO verify that login works for user "username1", "password1"
 
 		Assert.AreEqual (
-			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/auht_basic.php"), 
+			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/auth_basic.php"), 
 			HttpStatusCode.Unauthorized
 		);
 	}
@@ -80,16 +80,13 @@ public class TestCases
 	public static void JsonResult ()
 	{
 		// TODO verify url return valid JSON  http://site.com/json-request
-		byte[] res = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/xml.php");
+		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/xml.php");
 	}
 
 	public static void XmlResult ()
 	{
 		// TODO verify url return valid XML
-		byte[] res = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/json.php");
-
-		// TODO see HTTP headers for text encoding
-		// TODO decode res to UTF8 or other contents to string
+		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/json.php");
 	}
 
 	public static void HasCertificate ()
