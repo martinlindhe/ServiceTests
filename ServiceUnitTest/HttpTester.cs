@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.IO;
+using System.Text;
 using Punku;
 
 // TODO make user agent changeable
@@ -12,7 +13,7 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/restricted.php");
+			var xx = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/xml.php");
 
 			Console.WriteLine (xx);
 		}
@@ -75,13 +76,11 @@ namespace ServiceUnitTest
 			return response.ContentType;
 		}
 
-		public static byte[] FetchContent (string url)
+		private static byte[] ReadResponseStream (Stream stream)
 		{
-			var response = PerformFetch (url);
-
 			byte[] res = new byte[0];
 
-			using (var reader = new System.IO.BinaryReader (response.GetResponseStream ())) {
+			using (var reader = new System.IO.BinaryReader (stream)) {
 				byte[] scratch = null;
 
 				while ((scratch = reader.ReadBytes (4096)).Length > 0) {
@@ -97,6 +96,25 @@ namespace ServiceUnitTest
 			}
 
 			return res;
+		}
+
+		public static byte[] FetchContent (string url)
+		{
+			var response = PerformFetch (url);
+
+			return ReadResponseStream (response.GetResponseStream ());
+		}
+
+		public static string FetchContentAsString (string url)
+		{
+			var response = PerformFetch (url);
+
+			byte[] bytes = ReadResponseStream (response.GetResponseStream ());
+
+			// TODO see HTTP headers for text encoding
+			// TODO handle non-utf8 encodings
+
+			return Encoding.UTF8.GetString (bytes);
 		}
 	}
 }
