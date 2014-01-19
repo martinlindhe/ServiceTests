@@ -2,14 +2,16 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ServiceUnitTestTests/TestCases.cs">
     <Files>
-      <File FileName="ServiceUnitTest/Documentation/TODO.md" Line="22" Column="82" />
-      <File FileName="ServiceUnitTest/HttpTester.cs" Line="1" Column="14" />
-      <File FileName="ServiceUnitTestTests/TestCases.cs" Line="12" Column="94" />
+      <File FileName="ServiceUnitTest/Documentation/TODO.md" Line="24" Column="1" />
+      <File FileName="ServiceUnitTest/HttpTester.cs" Line="1" Column="1" />
+      <File FileName="ServiceUnitTestTests/TestCases.cs" Line="5" Column="1" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.NUnit.TestPad">
         <State expanded="True">
-          <Node name="ServiceUnitTestTests" selected="True" />
+          <Node name="ServiceUnitTestTests" expanded="True" selected="True">
+            <Node name="TestCases" expanded="True" />
+          </Node>
         </State>
       </Pad>
     </Pads>

@@ -3,7 +3,6 @@ using System.Net;
 using System.IO;
 using Punku;
 
-// TODO: need a "is_url" method (core_dev). extend string class for this
 // TODO make user agent changeable
 namespace ServiceUnitTest
 {
@@ -13,18 +12,16 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchContent ("http://cellfab.test/");
+			var xx = HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/restricted.php");
 
-
-			// dumps byte array to disk for verification
-			xx.ToFile ("out1.raw");
-
-			//Console.WriteLine (xx);
+			Console.WriteLine (xx);
 		}
 
 		private static HttpWebResponse PerformFetch (string url)
 		{
-	
+			if (!url.IsUrl ())
+				throw new FormatException ("not a URL");
+
 			var request = (HttpWebRequest)WebRequest.Create (url);
 
 			// disable auto redirect
@@ -37,7 +34,7 @@ namespace ServiceUnitTest
 
 			// send client headers
 
-			// IE 6:
+			// IE 6
 			request.UserAgent = "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
 
 
@@ -55,7 +52,7 @@ namespace ServiceUnitTest
 				var response = PerformFetch (url);
 
 				// print response headers:
-				Console.WriteLine (response.Headers);
+				// Console.WriteLine (response.Headers);
 
 				var res = response.StatusCode;
 				response.Close ();

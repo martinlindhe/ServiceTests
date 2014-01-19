@@ -63,24 +63,33 @@ public class TestCases
 		// TODO also check for "temporary redirect". TODO 3: check for ANY redirect code (perm or temp)
 	}
 
-	public static void Restricted ()
+	[Test]
+	public static void Unauthorized ()
 	{
-		// TODO verify "should be restricted" http://site.com/restricted-part
+		// verifys that this URL requires authentication
+
+		// TODO verify that auth = basic
+		// TODO verify that login works for user "username1", "password1"
+
+		Assert.AreEqual (
+			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/auht_basic.php"), 
+			HttpStatusCode.Unauthorized
+		);
 	}
 
 	public static void JsonResult ()
 	{
 		// TODO verify url return valid JSON  http://site.com/json-request
+		byte[] res = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/xml.php");
 	}
 
 	public static void XmlResult ()
 	{
 		// TODO verify url return valid XML
-	}
+		byte[] res = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/json.php");
 
-	public static void SoapResult ()
-	{
-		// TODO verify url return valid SOAP XML
+		// TODO see HTTP headers for text encoding
+		// TODO decode res to UTF8 or other contents to string
 	}
 
 	public static void HasCertificate ()
