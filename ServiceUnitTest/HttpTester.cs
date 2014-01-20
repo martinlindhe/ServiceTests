@@ -17,35 +17,12 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/xml.php");
-
+			var xx = HttpTester.FetchCertificate ("https://www.facebook.com/");
 			Console.WriteLine (xx);
 		}
 
-		private static HttpWebResponse PerformFetch (string url)
+		public static void FetchCertificate (string url)
 		{
-			if (!url.IsUrl ())
-				throw new FormatException ("not a URL");
-
-			var request = (HttpWebRequest)WebRequest.Create (url);
-
-			// disable auto redirect
-			request.AllowAutoRedirect = false;
-
-			// set timeout to 10 seconds
-			request.Timeout = 100000;
-
-
-
-			// send client headers
-
-			// IE 6
-			request.UserAgent = ua_IE6;
-
-
-			WebResponse response = request.GetResponse ();
-			return (HttpWebResponse)response;
-		
 		}
 
 		/**
@@ -80,6 +57,40 @@ namespace ServiceUnitTest
 			return response.ContentType;
 		}
 
+		public static byte[] FetchContent (string url)
+		{
+			var response = PerformFetch (url);
+
+			return ReadResponseStream (response.GetResponseStream ());
+		}
+
+		public static string FetchContentAsString (string url)
+		{
+			var response = PerformFetch (url);
+
+			byte[] bytes = ReadResponseStream (response.GetResponseStream ());
+
+			// TODO see HTTP headers for text encoding
+			// TODO handle non-utf8 encodings
+
+			return Encoding.UTF8.GetString (bytes);
+		}
+
+		private static HttpWebResponse PerformFetch (string url)
+		{
+			if (!url.IsUrl ())
+				throw new FormatException ("not a URL");
+
+			var request = (HttpWebRequest)WebRequest.Create (url);
+
+			request.Timeout = 100000; // 10 sec
+			request.AllowAutoRedirect = false;
+			request.UserAgent = ua_IE6;
+
+			WebResponse response = request.GetResponse ();
+			return (HttpWebResponse)response;
+		}
+
 		private static byte[] ReadResponseStream (Stream stream)
 		{
 			byte[] res = new byte[0];
@@ -100,25 +111,6 @@ namespace ServiceUnitTest
 			}
 
 			return res;
-		}
-
-		public static byte[] FetchContent (string url)
-		{
-			var response = PerformFetch (url);
-
-			return ReadResponseStream (response.GetResponseStream ());
-		}
-
-		public static string FetchContentAsString (string url)
-		{
-			var response = PerformFetch (url);
-
-			byte[] bytes = ReadResponseStream (response.GetResponseStream ());
-
-			// TODO see HTTP headers for text encoding
-			// TODO handle non-utf8 encodings
-
-			return Encoding.UTF8.GetString (bytes);
 		}
 	}
 }
