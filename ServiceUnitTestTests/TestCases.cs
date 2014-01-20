@@ -70,20 +70,27 @@ public class TestCases
 	}
 
 	[Test]
-	public static void MovedPermanently ()
+	public static void MovedPermanently01 ()
 	{
 		// verify that requested resource has been moved (301)
 		Assert.AreEqual (
 			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/moved_permanent.php"), 
 			HttpStatusCode.MovedPermanently
 		);
-
-		// TODO verify that Location also is leading to correct place!
-		// 		"should redirect permanently"  http://site.com/  -> http://www.site.com/
 	}
 
 	[Test]
-	public static void MovedTemporarily ()
+	public static void MovedPermanently02 ()
+	{
+		// verify that redirect Location is correct
+		Assert.AreEqual (
+			HttpTester.FetchLocation ("http://battle.x/http_tester_webserver/moved_permanent.php"), 
+			"normal.php"
+		);
+	}
+
+	[Test]
+	public static void MovedTemporarily01 ()
 	{
 		// verify that requested resource has a redirect (302)
 
@@ -91,8 +98,16 @@ public class TestCases
 			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/moved_temporary.php"), 
 			HttpStatusCode.Redirect
 		);
+	}
 
-		// TODO also verify the Location header value
+	[Test]
+	public static void MovedTemporarily02 ()
+	{
+		// verify that redirect Location is correct
+		Assert.AreEqual (
+			HttpTester.FetchLocation ("http://battle.x/http_tester_webserver/moved_temporary.php"), 
+			"normal.php"
+		);
 	}
 
 	[Test]
@@ -152,6 +167,7 @@ public class TestCases
 	[Test]
 	public static void Certificate02 ()
 	{
+		// FIXME this test works in isolation, but combined with Certificate01 before it,it always fails??
 		var cert = HttpTester.FetchCertificate ("https://www.facebook.com/");
 
 		// verify the serial number of the cert

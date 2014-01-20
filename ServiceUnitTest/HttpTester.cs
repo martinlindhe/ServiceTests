@@ -19,11 +19,9 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchContentCharset ("http://battle.x/http_tester_webserver/normal.php");
+			var xx = HttpTester.FetchLocation ("http://battle.x/http_tester_webserver/moved_permanent.php");
 
 			VarDump.Pretty (xx);
-
-
 		}
 
 		public static X509Certificate FetchCertificate (string url)
@@ -75,6 +73,16 @@ namespace ServiceUnitTest
 			var response = PerformFetch (url);
 
 			return response.ContentType;
+		}
+
+		/**
+		 * Returns value of Location response header
+		 */
+		public static string FetchLocation (string url)
+		{
+			var response = PerformFetch (url);
+
+			return response.GetResponseHeader ("Location");
 		}
 
 		/**

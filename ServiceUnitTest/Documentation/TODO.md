@@ -1,11 +1,14 @@
 ﻿== About ==
 
-HTTP server "black box" unit test suite for .NET
-"Unit Test" a deployed system by describing "known" operation
-as tests.
+Web server "black box" unit test suite for .NET
+
+Unit test externally visible parts of a deployed system,
+or a external API your software relies on by describing
+isolated parts of the understood server operation as test
+cases.
 
 Example use cases:
-* verify that your website stays configured correctly to handle permanent redirects
+* verify that your website correctly handles permanent redirects over time (especially useful if website CMS is upgraded or changed)
 * verify that the served SSL certificate is not changed
 * verify that JSON api is working as expected
 * test that current DEV/LIVE/EXTERNAL system configuration assumptions stays true
