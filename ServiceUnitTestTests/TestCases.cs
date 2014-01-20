@@ -89,12 +89,45 @@ public class TestCases
 		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/json.php");
 	}
 
-	public static void HasCertificate ()
+	[Test]
+	public static void Certificate01 ()
 	{
-		// TODO verify url has a ssl cert   https://site.com
+		var cert = HttpTester.FetchCertificate ("https://www.facebook.com/");
+
+		// verifies SHA1 hash of certificate
+		Assert.AreEqual (
+			cert.GetCertHashString (),
+			"13D0376C2AB2143640A62D08BB71F5E9EF571361"
+		);
+
 
 		// TODO verify cert is VALID
-		// TODO verify other details of cert?
+
+		// TODO verify that curent date is between these two dates
+		//Console.WriteLine ("effective datee " + cert.GetEffectiveDateString ());
+		//Console.WriteLine ("expire date " + cert.GetExpirationDateString ());
+
+
+
+		// Console.WriteLine ("format " + cert.GetFormat ()); // X509
+
+		//Console.WriteLine ("key algo " + cert.GetKeyAlgorithm ()); // 1.2.840.113549.1.1.1
+		//Console.WriteLine ("key algo params " + cert.GetKeyAlgorithmParametersString ());  // 0500
+
+
+		//Console.WriteLine ("public key " + cert.GetPublicKeyString ());
+	}
+
+	[Test]
+	public static void Certificate02 ()
+	{
+		var cert = HttpTester.FetchCertificate ("https://www.facebook.com/");
+
+		// certificate "serial number"
+		Assert.AreEqual (
+			cert.GetSerialNumberString (),
+			"3D4295F31ADC61C1B3B1C1853D850AB6"
+		);
 	}
 }
 

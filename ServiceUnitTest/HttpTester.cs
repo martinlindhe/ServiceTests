@@ -17,12 +17,26 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchCertificate ("https://www.facebook.com/");
-			Console.WriteLine (xx);
+
 		}
 
-		public static void FetchCertificate (string url)
+		public static System.Security.Cryptography.X509Certificates.X509Certificate FetchCertificate (string url)
 		{
+			if (!url.IsUrl ())
+				throw new FormatException ("not a URL");
+
+			var request = (HttpWebRequest)WebRequest.Create (url);
+
+			request.Timeout = 100000; // 10 sec
+			request.AllowAutoRedirect = false;
+			request.UserAgent = ua_IE6;
+
+			WebResponse response = request.GetResponse ();
+
+			if (request.ServicePoint.Certificate == null)
+				throw new Exception ("no certificate found");
+
+			return request.ServicePoint.Certificate;
 		}
 
 		/**

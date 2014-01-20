@@ -1,18 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceUnitTestTests/TestCases.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceUnitTest/HttpTester.cs">
     <Files>
-      <File FileName="ServiceUnitTest/Documentation/TODO.md" Line="24" Column="1" />
-      <File FileName="ServiceUnitTest/HttpTester.cs" Line="1" Column="1" />
-      <File FileName="ServiceUnitTestTests/TestCases.cs" Line="5" Column="1" />
+      <File FileName="ServiceUnitTest/Documentation/TODO.md" Line="1" Column="1" />
+      <File FileName="ServiceUnitTest/HttpTester.cs" Line="21" Column="1" />
+      <File FileName="ServiceUnitTestTests/TestCases.cs" Line="56" Column="2" />
+      <File FileName="../punku/punku/Debug/VarDump.cs" Line="6" Column="29" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True">
-          <Node name="ServiceUnitTestTests" expanded="True" selected="True">
-            <Node name="TestCases" expanded="True" />
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
