@@ -17,6 +17,10 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
+			var xx = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/gzip.php");
+
+			VarDump.Pretty (xx);
+
 
 		}
 
@@ -47,7 +51,7 @@ namespace ServiceUnitTest
 			try {
 				var response = PerformFetch (url);
 
-				// print response headers:
+				// print response headers
 				// Console.WriteLine (response.Headers);
 
 				var res = response.StatusCode;
@@ -55,7 +59,7 @@ namespace ServiceUnitTest
 
 				return res;
 			} catch (WebException ex) {
-				// HACK: for some reason, .NET throws an exception on 404 and 500 (maybe more)
+				// HACK for some reason, .NET throws an exception on 404 and 500 (maybe more)
 			
 				HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
 				var res = webResponse.StatusCode;
@@ -100,6 +104,9 @@ namespace ServiceUnitTest
 			request.Timeout = 100000; // 10 sec
 			request.AllowAutoRedirect = false;
 			request.UserAgent = ua_IE6;
+
+			// TODO: only accept gzip result from GzippedResult test
+			request.Headers.Add (HttpRequestHeader.AcceptEncoding, "gzip");
 
 			WebResponse response = request.GetResponse ();
 			return (HttpWebResponse)response;

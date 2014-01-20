@@ -48,10 +48,17 @@ public class TestCases
 		);
 	}
 
+	[Test]
 	public static void GzippedResult ()
 	{
-		// TODO client header must specify client.Headers["Accept-Encoding"] = "gzip";
-		// TODO verify url return gzipped content
+		// TODO only set client accept gzip header from this test. right now it is globally enabled
+		// verifys that url is configured to return gzipped content
+
+		byte[] raw = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/gzip.php");
+
+		// gzip data stream header
+		Assert.AreEqual (raw [0], 0x1F);
+		Assert.AreEqual (raw [1], 0x8B);
 	}
 
 	public static void RedirectPermanent ()
@@ -101,7 +108,6 @@ public class TestCases
 		);
 
 
-		// TODO verify cert is VALID
 
 		// TODO verify that curent date is between these two dates
 		//Console.WriteLine ("effective datee " + cert.GetEffectiveDateString ());
