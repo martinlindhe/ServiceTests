@@ -20,7 +20,6 @@ Something similar, for Ruby: https://github.com/hannestyden/hyperspec
 
 == TODO core ==
     * can we extend NUnit ?
-    * write a mini website to use as reference, using .NET web classes?
     * merge the tiny http test webpage source. currently lives in fmf repository under http_tester_webserver
 
 == TODO HTTP API testers ==
@@ -30,9 +29,9 @@ Something similar, for Ruby: https://github.com/hannestyden/hyperspec
 
 == TODO new modules ==
     MySQL tester
+	SMTP tester, for gmail
 	SSH tester
 	FTP tester
-	SMTP tester? for postfix? exim4?
 	SIP tester, for asterisk
 	IRC tester?
 	NTP tester?

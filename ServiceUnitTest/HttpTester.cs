@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Security.Cryptography.X509Certificates;
 using Punku;
 
@@ -18,7 +19,7 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/gzip.php");
+			var xx = HttpTester.FetchContentCharset ("http://battle.x/http_tester_webserver/normal.php");
 
 			VarDump.Pretty (xx);
 
@@ -74,6 +75,24 @@ namespace ServiceUnitTest
 			var response = PerformFetch (url);
 
 			return response.ContentType;
+		}
+
+		/**
+		 * Extracts document encoding from HTTP header "Content-Type"
+		 */
+		public static string FetchContentCharset (string url)
+		{
+			var response = PerformFetch (url);
+
+			// "text/html; charset=UTF-8"
+			string contentType = response.ContentType;
+
+			if (!contentType.Contains ("charset="))
+				throw new Exception ("Content-Type does not contain charset");
+
+			// TODO improve parsing
+			string[] lines = Regex.Split (contentType, "charset=");
+			return lines [1];
 		}
 
 		public static byte[] FetchContent (string url, bool gzipped = false)

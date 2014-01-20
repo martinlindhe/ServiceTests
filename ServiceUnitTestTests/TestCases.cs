@@ -49,9 +49,19 @@ public class TestCases
 	}
 
 	[Test]
+	public static void ContentCharset ()
+	{
+		// verify that charset is set correctly
+		Assert.AreEqual (
+			HttpTester.FetchContentCharset ("http://battle.x/http_tester_webserver/normal.php"),
+			"UTF-8"
+		);
+	}
+
+	[Test]
 	public static void GzippedResult ()
 	{
-		// verifys that url is configured to return gzipped content
+		// verify that url is configured to return gzipped content
 		byte[] raw = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/gzip.php", true);
 
 		// gzip data stream header
@@ -62,8 +72,7 @@ public class TestCases
 	[Test]
 	public static void MovedPermanently ()
 	{
-		// verifies that requested resource has been Moved Permanently (301)
-
+		// verify that requested resource has been moved (301)
 		Assert.AreEqual (
 			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/moved_permanent.php"), 
 			HttpStatusCode.MovedPermanently
@@ -71,14 +80,25 @@ public class TestCases
 
 		// TODO verify that Location also is leading to correct place!
 		// 		"should redirect permanently"  http://site.com/  -> http://www.site.com/
+	}
 
-		// TODO also check for "temporary redirect". TODO 3: check for ANY redirect code (perm or temp)
+	[Test]
+	public static void MovedTemporarily ()
+	{
+		// verify that requested resource has a redirect (302)
+
+		Assert.AreEqual (
+			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/moved_temporary.php"), 
+			HttpStatusCode.Redirect
+		);
+
+		// TODO also verify the Location header value
 	}
 
 	[Test]
 	public static void Unauthorized ()
 	{
-		// verifies that this URL requires authentication
+		// verify that this URL requires authentication (401)
 
 		// TODO verify that auth = basic
 		// TODO verify that login works for user "username1", "password1"
@@ -91,7 +111,7 @@ public class TestCases
 
 	public static void JsonResult ()
 	{
-		// TODO verify url return valid JSON  http://site.com/json-request
+		// TODO verify url return valid JSON
 		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/xml.php");
 	}
 
@@ -106,7 +126,7 @@ public class TestCases
 	{
 		var cert = HttpTester.FetchCertificate ("https://www.facebook.com/");
 
-		// verifies SHA1 hash of certificate
+		// verify SHA1 hash of certificate
 		Assert.AreEqual (
 			cert.GetCertHashString (),
 			"13D0376C2AB2143640A62D08BB71F5E9EF571361"
@@ -134,7 +154,7 @@ public class TestCases
 	{
 		var cert = HttpTester.FetchCertificate ("https://www.facebook.com/");
 
-		// certificate "serial number"
+		// verify the serial number of the cert
 		Assert.AreEqual (
 			cert.GetSerialNumberString (),
 			"3D4295F31ADC61C1B3B1C1853D850AB6"
