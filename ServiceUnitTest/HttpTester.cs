@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using System.Text;
+using System.Security.Cryptography.X509Certificates;
 using Punku;
 
 // TODO make user agent changeable
@@ -24,7 +25,7 @@ namespace ServiceUnitTest
 
 		}
 
-		public static System.Security.Cryptography.X509Certificates.X509Certificate FetchCertificate (string url)
+		public static X509Certificate FetchCertificate (string url)
 		{
 			if (!url.IsUrl ())
 				throw new FormatException ("not a URL");
@@ -75,9 +76,9 @@ namespace ServiceUnitTest
 			return response.ContentType;
 		}
 
-		public static byte[] FetchContent (string url)
+		public static byte[] FetchContent (string url, bool gzipped = false)
 		{
-			var response = PerformFetch (url);
+			var response = PerformFetch (url, gzipped);
 
 			return ReadResponseStream (response.GetResponseStream ());
 		}
@@ -89,12 +90,12 @@ namespace ServiceUnitTest
 			byte[] bytes = ReadResponseStream (response.GetResponseStream ());
 
 			// TODO see HTTP headers for text encoding
-			// TODO handle non-utf8 encodings
+			// TODO handle non-utf8 encodings + add some examples, latin1->utf8. 
 
 			return Encoding.UTF8.GetString (bytes);
 		}
 
-		private static HttpWebResponse PerformFetch (string url)
+		private static HttpWebResponse PerformFetch (string url, bool gzipped = false)
 		{
 			if (!url.IsUrl ())
 				throw new FormatException ("not a URL");
@@ -105,8 +106,9 @@ namespace ServiceUnitTest
 			request.AllowAutoRedirect = false;
 			request.UserAgent = ua_IE6;
 
-			// TODO: only accept gzip result from GzippedResult test
-			request.Headers.Add (HttpRequestHeader.AcceptEncoding, "gzip");
+			if (gzipped) {
+				request.Headers.Add (HttpRequestHeader.AcceptEncoding, "gzip");
+			}
 
 			WebResponse response = request.GetResponse ();
 			return (HttpWebResponse)response;

@@ -51,21 +51,26 @@ public class TestCases
 	[Test]
 	public static void GzippedResult ()
 	{
-		// TODO only set client accept gzip header from this test. right now it is globally enabled
 		// verifys that url is configured to return gzipped content
-
-		byte[] raw = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/gzip.php");
+		byte[] raw = HttpTester.FetchContent ("http://battle.x/http_tester_webserver/gzip.php", true);
 
 		// gzip data stream header
 		Assert.AreEqual (raw [0], 0x1F);
 		Assert.AreEqual (raw [1], 0x8B);
 	}
 
-	public static void RedirectPermanent ()
+	[Test]
+	public static void MovedPermanently ()
 	{
-		// NOTE tests a permanent redirect (HTTP XXXXX number)
+		// verifies that requested resource has been Moved Permanently (301)
 
-		// TODO "should redirect permanently"  http://site.com/  -> http://www.site.com/
+		Assert.AreEqual (
+			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/moved_permanent.php"), 
+			HttpStatusCode.MovedPermanently
+		);
+
+		// TODO verify that Location also is leading to correct place!
+		// 		"should redirect permanently"  http://site.com/  -> http://www.site.com/
 
 		// TODO also check for "temporary redirect". TODO 3: check for ANY redirect code (perm or temp)
 	}
@@ -73,7 +78,7 @@ public class TestCases
 	[Test]
 	public static void Unauthorized ()
 	{
-		// verifys that this URL requires authentication
+		// verifies that this URL requires authentication
 
 		// TODO verify that auth = basic
 		// TODO verify that login works for user "username1", "password1"
