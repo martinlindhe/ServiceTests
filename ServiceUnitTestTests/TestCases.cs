@@ -110,17 +110,28 @@ public class TestCases
 	}
 
 	[Test]
-	public static void Unauthorized ()
+	public static void Auth01 ()
 	{
 		// verify that this URL requires authentication (401)
-
-		// TODO verify that auth = basic
-		// TODO verify that login works for user "username1", "password1"
-
 		Assert.AreEqual (
 			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/auth_basic.php"), 
 			HttpStatusCode.Unauthorized
 		);
+	}
+
+	[Test]
+	public static void Auth02 ()
+	{
+		// verify that that Auth type = Basic
+		Assert.AreEqual (
+			HttpTester.FetchAuthType ("http://battle.x/http_tester_webserver/auth_basic.php"), 
+			"Basic"
+		);
+	}
+
+	public static void Auth03 ()
+	{
+		// TODO verify that login works for user "username1", "password1"
 	}
 
 	public static void JsonResult ()

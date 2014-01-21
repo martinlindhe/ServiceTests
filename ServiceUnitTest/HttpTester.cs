@@ -19,7 +19,7 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.AuthType ("http://battle.x/http_tester_webserver/auth_basic.php");
+			var xx = HttpTester.FetchAuthType ("http://battle.x/http_tester_webserver/auth_basic.php");
 			VarDump.Pretty (xx);
 
 
@@ -91,12 +91,17 @@ namespace ServiceUnitTest
 		/**
 		 * Parses auth type from WWW-Authenticate response header
 		 */
-		public static string AuthType (string url)
+		public static string FetchAuthType (string url)
 		{
-			// TODO return ENUM of auth type: Basic, XXX XXX
 			var response = PerformFetch (url);
 
-			return response.GetResponseHeader ("WWW-Authenticate");
+			string auth = response.GetResponseHeader ("WWW-Authenticate"); // Basic realm="my realm"
+		
+			// explode at space, return first token
+			string[] xx = auth.Split (' ');
+			return xx [0];
+
+			// TODO return ENUM of auth type: Basic, XXX XXX
 		}
 
 		public static string FetchContentType (string url)
@@ -123,8 +128,7 @@ namespace ServiceUnitTest
 		{
 			var response = PerformFetch (url);
 
-			// "text/html; charset=UTF-8"
-			string contentType = response.ContentType;
+			string contentType = response.ContentType; // text/html; charset=UTF-8
 
 			if (!contentType.Contains ("charset="))
 				throw new Exception ("Content-Type does not contain charset");
