@@ -19,28 +19,57 @@ namespace ServiceUnitTest
 		{
 			Console.WriteLine ("wowo");
 
-			var xx = HttpTester.FetchLocation ("http://battle.x/http_tester_webserver/moved_permanent.php");
-
+			var xx = HttpTester.AuthType ("http://battle.x/http_tester_webserver/auth_basic.php");
 			VarDump.Pretty (xx);
+
+
+
+
+
+			/*
+			var cert1 = HttpTester.FetchCertificate ("https://www.facebook.com/");
+			// verify SHA1 hash of certificate
+			Console.WriteLine (
+				cert1.GetCertHashString ()
+			);
+
+			var cert2 = HttpTester.FetchCertificate ("https://www.facebook.com/");
+			// verify the serial number of the cert
+			Console.WriteLine (
+				cert2.GetSerialNumberString () // XXX always fails!
+			);
+			*/
 		}
 
 		public static X509Certificate FetchCertificate (string url)
 		{
 			if (!url.IsUrl ())
 				throw new FormatException ("not a URL");
+				
+			Uri u = new Uri (url);
+			ServicePoint sp = ServicePointManager.FindServicePoint (u);
+			sp.MaxIdleTime = 360000;
 
-			var request = (HttpWebRequest)WebRequest.Create (url);
+			string groupName = Guid.NewGuid ().ToString ();
+
+			var request = (HttpWebRequest)WebRequest.Create (u);
+			request.ConnectionGroupName = groupName;
 
 			request.Timeout = 100000; // 10 sec
 			request.AllowAutoRedirect = false;
 			request.UserAgent = ua_IE6;
 
-			WebResponse response = request.GetResponse ();
+			using (WebResponse response = request.GetResponse ()) {
+				// Ignore response, and close the response.
+			}
 
-			if (request.ServicePoint.Certificate == null)
+			sp.CloseConnectionGroup (groupName);
+
+			// FIXME on 2nd request, i dont get the cert for https://www.facebook.com
+			if (sp.Certificate == null)
 				throw new Exception ("no certificate found");
 
-			return request.ServicePoint.Certificate;
+			return sp.Certificate;
 		}
 
 		/**
@@ -48,24 +77,26 @@ namespace ServiceUnitTest
 		 */
 		public static HttpStatusCode FetchStatusCode (string url)
 		{
-			try {
-				var response = PerformFetch (url);
+			var response = PerformFetch (url);
 
-				// print response headers
-				// Console.WriteLine (response.Headers);
+			// print response headers
+			// Console.WriteLine (response.Headers);
 
-				var res = response.StatusCode;
-				response.Close ();
+			var res = response.StatusCode;
+			response.Close ();
 
-				return res;
-			} catch (WebException ex) {
-				// HACK for some reason, .NET throws an exception on 404 and 500 (maybe more)
-			
-				HttpWebResponse webResponse = (HttpWebResponse)ex.Response;
-				var res = webResponse.StatusCode;
+			return res;
+		}
 
-				return res;
-			}
+		/**
+		 * Parses auth type from WWW-Authenticate response header
+		 */
+		public static string AuthType (string url)
+		{
+			// TODO return ENUM of auth type: Basic, XXX XXX
+			var response = PerformFetch (url);
+
+			return response.GetResponseHeader ("WWW-Authenticate");
 		}
 
 		public static string FetchContentType (string url)
@@ -124,21 +155,24 @@ namespace ServiceUnitTest
 
 		private static HttpWebResponse PerformFetch (string url, bool gzipped = false)
 		{
-			if (!url.IsUrl ())
-				throw new FormatException ("not a URL");
+			try {
+				var u = new Uri (url);
+				var request = (HttpWebRequest)WebRequest.Create (u);
 
-			var request = (HttpWebRequest)WebRequest.Create (url);
+				request.Timeout = 100000; // 10 sec
+				request.AllowAutoRedirect = false;
+				request.UserAgent = ua_IE6;
 
-			request.Timeout = 100000; // 10 sec
-			request.AllowAutoRedirect = false;
-			request.UserAgent = ua_IE6;
+				if (gzipped)
+					request.Headers.Add (HttpRequestHeader.AcceptEncoding, "gzip");
 
-			if (gzipped) {
-				request.Headers.Add (HttpRequestHeader.AcceptEncoding, "gzip");
+				return (HttpWebResponse)request.GetResponse ();
+	
+			} catch (WebException ex) {
+				// .NET throws an exception on 401, 404 and 500 (and more)
+
+				return (HttpWebResponse)ex.Response;
 			}
-
-			WebResponse response = request.GetResponse ();
-			return (HttpWebResponse)response;
 		}
 
 		private static byte[] ReadResponseStream (Stream stream)

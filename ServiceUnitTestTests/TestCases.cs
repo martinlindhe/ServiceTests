@@ -93,7 +93,6 @@ public class TestCases
 	public static void MovedTemporarily01 ()
 	{
 		// verify that requested resource has a redirect (302)
-
 		Assert.AreEqual (
 			HttpTester.FetchStatusCode ("http://battle.x/http_tester_webserver/moved_temporary.php"), 
 			HttpStatusCode.Redirect
