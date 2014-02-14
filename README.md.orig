@@ -1,4 +1,5 @@
-## About ServiceTests
+<<<<<<< HEAD
+﻿== About ==
 
 Web server "black box" unit test suite for .NET
 
@@ -21,16 +22,28 @@ Idea from http://robb.weblaws.org/2014/01/16/new-open-source-library-for-test-dr
 Something similar, for Ruby: https://github.com/hannestyden/hyperspec
 
 
-## TODO core
-* can we extend NUnit ?
-* merge the tiny http test webpage source. currently lives in fmf repository under http_tester_webserver
+== TODO core ==
+    * can we extend NUnit ?
+    * merge the tiny http test webpage source. currently lives in fmf repository under http_tester_webserver
 
 
-## TODO HTTP API testers
-* XML parser: verify result is strict/loose formatted xml
-* SOAP API tester: verify functions exists etc? verify WSDL is in place?
-* JSON parser: verify result is as expected
+== TODO HTTP API testers ==
+    * XML parser: verify result is strict/loose formatted xml
+    * SOAP API tester: verify functions exists etc? verify WSDL is in place?
+    * JSON parser: verify result is as expected
 
 
-## TODO new modules
-* MySQL, SMTP (gmail), SSH, SIP (asterisk), IRC, NTP
+== TODO new modules ==
+    MySQL tester
+    SMTP tester, for gmail
+    SSH tester
+    FTP tester
+    SIP tester, for asterisk
+    IRC tester?
+    NTP tester?
+=======
+ServiceTests
+============
+
+Web server "black box" unit test suite for .NET, written in C# 
+>>>>>>> f8cbbfbc8ea961c452f4522e8db54bc7b82e5922
