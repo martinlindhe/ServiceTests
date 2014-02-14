@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography.X509Certificates;
-using Punku;
 
 // TODO make user agent changeable
 namespace ServiceUnitTest
@@ -12,15 +11,14 @@ namespace ServiceUnitTest
 	public class HttpTester
 	{
 		static string ua_IE6 = "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)";
-		static string ua_FF26_Mac = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:26.0) Gecko/20100101 Firefox/26.0";
-		static string ua_Chrome32_Mac = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36";
-
+		//static string ua_FF26_Mac = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:26.0) Gecko/20100101 Firefox/26.0";
+		//static string ua_Chrome32_Mac = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.77 Safari/537.36";
 		public static void Main ()
 		{
 			Console.WriteLine ("wowo");
 
 			var xx = HttpTester.FetchAuthType ("http://battle.x/http_tester_webserver/auth_basic.php");
-			VarDump.Pretty (xx);
+			//VarDump.Pretty (xx);
 
 
 

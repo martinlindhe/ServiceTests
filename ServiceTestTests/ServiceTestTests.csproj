@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ServiceUnitTest</RootNamespace>
-    <AssemblyName>ServiceUnitTest</AssemblyName>
+    <ProjectGuid>{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ServiceUnitTestTests</RootNamespace>
+    <AssemblyName>ServiceUnitTestTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -33,26 +33,18 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Documentation\" />
+    <Compile Include="Test_HttpTester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Documentation\TODO.md" />
+    <ProjectReference Include="..\ServiceTest\ServiceTest.csproj">
+      <Project>{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}</Project>
+      <Name>ServiceTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HttpTester.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Net" />
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
+    <Reference Include="nunit.core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\punku\punku\Punku.csproj">
-      <Project>{09D942E9-3228-4FB0-A1C0-64969E2322BF}</Project>
-      <Name>Punku</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\punku\External\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.csproj">
-      <Project>{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}</Project>
-      <Name>Newtonsoft.Json</Name>
-    </ProjectReference>
+    <Reference Include="System.Net" />
   </ItemGroup>
 </Project>

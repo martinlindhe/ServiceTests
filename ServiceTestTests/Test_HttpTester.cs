@@ -6,7 +6,7 @@ using NUnit.Framework;
 // TODO: specify a list of user agents to use to perform each test
 // TODO: perform each test once for each user agent
 [TestFixture]
-public class TestCases
+public class Test_HttpTester
 {
 	[Test]
 	public static void StatusOK ()
