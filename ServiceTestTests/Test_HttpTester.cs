@@ -137,13 +137,13 @@ public class Test_HttpTester
 	public static void JsonResult ()
 	{
 		// TODO verify url return valid JSON
-		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/xml.php");
+		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/json.php");
 	}
 
 	public static void XmlResult ()
 	{
 		// TODO verify url return valid XML
-		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/json.php");
+		string res = HttpTester.FetchContentAsString ("http://battle.x/http_tester_webserver/xml.php");
 	}
 
 	[Test]

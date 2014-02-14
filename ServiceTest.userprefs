@@ -1,8 +1,10 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceTest/HttpTester.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceTestTests/Test_HttpTester.cs">
     <Files>
-      <File FileName="ServiceTest/HttpTester.cs" Line="21" Column="6" />
+      <File FileName="README.md" Line="1" Column="1" />
+      <File FileName="ServiceTest/HttpTester.cs" Line="1" Column="1" />
+      <File FileName="ServiceTestTests/Test_HttpTester.cs" Line="146" Column="91" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

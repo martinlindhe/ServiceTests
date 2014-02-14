@@ -5,6 +5,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTest", "ServiceTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTestTests", "ServiceTestTests\ServiceTestTests.csproj", "{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{810BAE6E-D3E6-4854-839F-22D7FDED1C69}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json", "External\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.csproj", "{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -15,10 +22,16 @@ Global
 		{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}.Debug|x86.Build.0 = Debug|x86
 		{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}.Release|x86.ActiveCfg = Release|x86
 		{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}.Release|x86.Build.0 = Release|x86
+		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Debug|x86.Build.0 = Debug|Any CPU
+		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|x86.ActiveCfg = Release|Any CPU
+		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|x86.Build.0 = Release|Any CPU
 		{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}.Debug|x86.ActiveCfg = Debug|x86
 		{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}.Debug|x86.Build.0 = Debug|x86
 		{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}.Release|x86.ActiveCfg = Release|x86
 		{FA7D3CE4-09AE-405C-AD96-32CDDDDAF605}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ServiceTest\ServiceTest.csproj

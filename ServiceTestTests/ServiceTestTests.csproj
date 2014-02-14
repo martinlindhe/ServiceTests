@@ -40,6 +40,10 @@
       <Project>{293064AC-DA5F-40B3-BBA8-44D5E5E2BD98}</Project>
       <Name>ServiceTest</Name>
     </ProjectReference>
+    <ProjectReference Include="..\External\Newtonsoft.Json\Src\Newtonsoft.Json\Newtonsoft.Json.csproj">
+      <Project>{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}</Project>
+      <Name>Newtonsoft.Json</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" />
