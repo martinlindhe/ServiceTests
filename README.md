@@ -16,7 +16,7 @@ Example use cases:
 The tests should work for any HTTP/HTTPS web server.
 
 
-    
+
 Idea from http://robb.weblaws.org/2014/01/16/new-open-source-library-for-test-driven-devops/
 Something similar, for Ruby: https://github.com/hannestyden/hyperspec
 
@@ -25,16 +25,18 @@ Something similar, for Ruby: https://github.com/hannestyden/hyperspec
     * can we extend NUnit ?
     * merge the tiny http test webpage source. currently lives in fmf repository under http_tester_webserver
 
+
 == TODO HTTP API testers ==
     * XML parser: verify result is strict/loose formatted xml
     * SOAP API tester: verify functions exists etc? verify WSDL is in place?
     * JSON parser: verify result is as expected
 
+
 == TODO new modules ==
     MySQL tester
-	SMTP tester, for gmail
-	SSH tester
-	FTP tester
-	SIP tester, for asterisk
-	IRC tester?
-	NTP tester?
+    SMTP tester, for gmail
+    SSH tester
+    FTP tester
+    SIP tester, for asterisk
+    IRC tester?
+    NTP tester?
